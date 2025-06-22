@@ -32,6 +32,6 @@ public class StudentService {
     }
 
     public Collection<Student> findByAge(int age) {
-        return studentRepository.findAllByAge(age);
+        return studentRepository.findStudentsByAge(age);
     }
 }
