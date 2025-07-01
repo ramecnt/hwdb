@@ -3,6 +3,7 @@ package pro.sky.hwdb.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pro.sky.hwdb.model.Faculty;
 import pro.sky.hwdb.model.Student;
 import pro.sky.hwdb.service.StudentService;
 
@@ -54,5 +55,18 @@ public class StudentController {
             return ResponseEntity.ok(studentService.findByAge(age));
         }
         return ResponseEntity.ok(Collections.emptyList());
+    }
+
+    @GetMapping
+    public ResponseEntity<Collection<Student>> findByAgeBetween(@RequestParam(required = false) int min, @RequestParam(required = false) int max) {
+        if (min < max) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(studentService.findByAgeBetween(min, max));
+    }
+
+    @GetMapping
+    public ResponseEntity<Faculty> getFaculty(@RequestParam(required = false) long facultyId) {
+        return ResponseEntity.ok(studentService.getFaculty(facultyId));
     }
 }

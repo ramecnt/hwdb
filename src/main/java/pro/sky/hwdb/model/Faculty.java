@@ -1,10 +1,9 @@
 package pro.sky.hwdb.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -15,14 +14,8 @@ public class Faculty {
     private long id;
     private String name, color;
 
-    public Faculty() {
-    }
-
-    public Faculty(long id, String name, String color) {
-        this.id = id;
-        this.name = name;
-        this.color = color;
-    }
+    @OneToMany(mappedBy = "faculty")
+    private Set<Student> students;
 
     @Override
     public boolean equals(Object o) {
@@ -70,5 +63,13 @@ public class Faculty {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 }

@@ -4,10 +4,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.hwdb.model.Faculty;
+import pro.sky.hwdb.model.Student;
 import pro.sky.hwdb.service.FacultyService;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/faculty")
@@ -54,5 +56,15 @@ public class FacultyController {
             return ResponseEntity.ok(facultyService.findByColor(color));
         }
         return ResponseEntity.ok(Collections.emptyList());
+    }
+
+    @GetMapping
+    public ResponseEntity<Collection<Faculty>> findFacultiesByString(@RequestParam String search) {
+        return ResponseEntity.ok(facultyService.findByString(search));
+    }
+
+    @GetMapping
+    public ResponseEntity<Set<Student>> getStudents(@RequestParam long facultyId) {
+        return ResponseEntity.ok(facultyService.getStudents(facultyId));
     }
 }

@@ -1,6 +1,7 @@
 package pro.sky.hwdb.service;
 
 import org.springframework.stereotype.Service;
+import pro.sky.hwdb.model.Faculty;
 import pro.sky.hwdb.model.Student;
 import pro.sky.hwdb.repositories.StudentRepository;
 
@@ -33,5 +34,15 @@ public class StudentService {
 
     public Collection<Student> findByAge(int age) {
         return studentRepository.findStudentsByAge(age);
+    }
+
+    public Collection<Student> findByAgeBetween(int min, int max) {
+        return studentRepository.findStudentsByAgeBetween(min, max);
+    }
+
+    public Faculty getFaculty(long id) {
+        Student student = studentRepository.findById(id)
+                .orElseThrow();
+        return student.getFaculty();
     }
 }
