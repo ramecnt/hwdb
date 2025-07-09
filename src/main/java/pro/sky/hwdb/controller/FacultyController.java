@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.hwdb.model.Faculty;
 import pro.sky.hwdb.model.Student;
-import pro.sky.hwdb.service.FacultyService;
+import pro.sky.hwdb.service.FacultyServiceImpl;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -15,9 +15,9 @@ import java.util.Set;
 @RequestMapping("/faculty")
 public class FacultyController {
 
-    private final FacultyService facultyService;
+    private final FacultyServiceImpl facultyService;
 
-    public FacultyController(FacultyService facultyService) {
+    public FacultyController(FacultyServiceImpl facultyService) {
         this.facultyService = facultyService;
     }
 
@@ -50,7 +50,7 @@ public class FacultyController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
+    @GetMapping("/color")
     public ResponseEntity<Collection<Faculty>> findFaculties(@RequestParam(required = false) String color) {
         if (color != null && !color.isBlank()) {
             return ResponseEntity.ok(facultyService.findByColor(color));
@@ -58,12 +58,12 @@ public class FacultyController {
         return ResponseEntity.ok(Collections.emptyList());
     }
 
-    @GetMapping
+    @GetMapping("/search")
     public ResponseEntity<Collection<Faculty>> findFacultiesByString(@RequestParam String search) {
         return ResponseEntity.ok(facultyService.findByString(search));
     }
 
-    @GetMapping
+    @GetMapping("/students")
     public ResponseEntity<Set<Student>> getStudents(@RequestParam long facultyId) {
         return ResponseEntity.ok(facultyService.getStudents(facultyId));
     }

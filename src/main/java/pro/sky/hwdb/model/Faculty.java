@@ -1,5 +1,6 @@
 package pro.sky.hwdb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -15,6 +16,7 @@ public class Faculty {
     private String name, color;
 
     @OneToMany(mappedBy = "faculty")
+    @JsonIgnore
     private Set<Student> students;
 
     @Override

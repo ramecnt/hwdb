@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.hwdb.model.Faculty;
 import pro.sky.hwdb.model.Student;
-import pro.sky.hwdb.service.StudentService;
+import pro.sky.hwdb.service.StudentServiceImpl;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -14,9 +14,9 @@ import java.util.Collections;
 @RequestMapping("/student")
 public class StudentController {
 
-    private final StudentService studentService;
+    private final StudentServiceImpl studentService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentServiceImpl studentService) {
         this.studentService = studentService;
     }
 
@@ -49,7 +49,7 @@ public class StudentController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
+    @GetMapping("/age")
     public ResponseEntity<Collection<Student>> findStudents(@RequestParam(required = false) int age) {
         if (age > 0) {
             return ResponseEntity.ok(studentService.findByAge(age));
@@ -57,15 +57,15 @@ public class StudentController {
         return ResponseEntity.ok(Collections.emptyList());
     }
 
-    @GetMapping
+    @GetMapping("/ageBetween")
     public ResponseEntity<Collection<Student>> findByAgeBetween(@RequestParam(required = false) int min, @RequestParam(required = false) int max) {
-        if (min < max) {
+        if (min > max) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         return ResponseEntity.ok(studentService.findByAgeBetween(min, max));
     }
 
-    @GetMapping
+    @GetMapping("/faculty")
     public ResponseEntity<Faculty> getFaculty(@RequestParam(required = false) long facultyId) {
         return ResponseEntity.ok(studentService.getFaculty(facultyId));
     }

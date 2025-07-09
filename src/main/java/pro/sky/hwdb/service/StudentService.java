@@ -8,7 +8,7 @@ import pro.sky.hwdb.repositories.StudentRepository;
 import java.util.Collection;
 
 @Service
-public class StudentService {
+public class StudentService implements StudentServiceImpl {
 
     private final StudentRepository studentRepository;
 
@@ -16,30 +16,37 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
+    @Override
     public Student addStudent(Student student) {
         return studentRepository.save(student);
     }
 
+    @Override
     public Student findStudent(long id) {
         return studentRepository.findById(id).orElse(null);
     }
 
+    @Override
     public Student editStudent(Student student) {
         return studentRepository.save(student);
     }
 
+    @Override
     public void deleteStudent(long id) {
         studentRepository.deleteById(id);
     }
 
+    @Override
     public Collection<Student> findByAge(int age) {
         return studentRepository.findStudentsByAge(age);
     }
 
+    @Override
     public Collection<Student> findByAgeBetween(int min, int max) {
         return studentRepository.findStudentsByAgeBetween(min, max);
     }
 
+    @Override
     public Faculty getFaculty(long id) {
         Student student = studentRepository.findById(id)
                 .orElseThrow();

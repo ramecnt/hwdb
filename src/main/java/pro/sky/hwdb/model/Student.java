@@ -1,5 +1,6 @@
 package pro.sky.hwdb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -15,6 +16,7 @@ public class Student {
 
     @ManyToOne
     @JoinColumn(name = "faculty_id")
+    @JsonIgnoreProperties("students")
     private Faculty faculty;
 
     @Override
