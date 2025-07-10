@@ -52,4 +52,19 @@ public class StudentService implements StudentServiceImpl {
                 .orElseThrow();
         return student.getFaculty();
     }
+
+    @Override
+    public Integer studentAmount() {
+        return studentRepository.studentAmount();
+    }
+
+    @Override
+    public Float avgAge() {
+        return studentRepository.avgAge();
+    }
+
+    @Override
+    public Collection<Student> lastStudents() {
+        return studentRepository.lastStudents();
+    }
 }
