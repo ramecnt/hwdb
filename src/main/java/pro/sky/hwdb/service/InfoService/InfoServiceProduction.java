@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Profile("production")
 public class InfoServiceProduction implements InfoService {
-    @Value("${spring.rsocket.server.port}")
+    @Value("${server.port}")
     private Integer port;
 
     @Override
