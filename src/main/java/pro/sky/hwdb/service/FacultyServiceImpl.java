@@ -20,4 +20,8 @@ public interface FacultyServiceImpl   {
     Collection<Faculty> findByString(String search);
 
     Set<Student> getStudents(long id);
+
+    String longestName();
+
+    long sum();
 }

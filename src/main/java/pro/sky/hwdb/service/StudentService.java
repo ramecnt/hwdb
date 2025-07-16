@@ -80,4 +80,17 @@ public class StudentService implements StudentServiceImpl {
         logger.info("Get 5 last students");
         return studentRepository.lastStudents();
     }
+
+    @Override
+    public Collection<Student> startsWithA() {
+        logger.info("Get students starts with a student");
+        Collection<Student> allStudents = studentRepository.findAll();
+        return allStudents.stream().filter(s -> s.getName().toUpperCase().startsWith("A")).sorted().toList();
+    }
+
+    @Override
+    public Double avgAgeStream() {
+        logger.info("Get student avg age using stream stream");
+        return studentRepository.findAll().stream().mapToDouble(Student::getAge).average().orElseThrow();
+    }
 }

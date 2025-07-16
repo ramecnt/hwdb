@@ -84,4 +84,14 @@ public class StudentController {
     public ResponseEntity<Collection<Student>> lastStudents() {
         return ResponseEntity.ok(studentService.lastStudents());
     }
+
+    @GetMapping("/starts_with_a")
+    public ResponseEntity<Collection<Student>> startsWithWithA() {
+        return ResponseEntity.ok(studentService.startsWithA());
+    }
+
+    @GetMapping("/average_age_stream")
+    public ResponseEntity<Double> averageAgeStream() {
+        return ResponseEntity.ok(studentService.avgAgeStream());
+    }
 }

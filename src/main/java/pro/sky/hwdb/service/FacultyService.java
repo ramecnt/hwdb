@@ -8,7 +8,9 @@ import pro.sky.hwdb.model.Student;
 import pro.sky.hwdb.repositories.FacultyRepository;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Set;
+import java.util.stream.LongStream;
 
 @Service
 public class FacultyService implements FacultyServiceImpl {
@@ -62,5 +64,18 @@ public class FacultyService implements FacultyServiceImpl {
         Faculty faculty = facultyRepository.findById(id)
                 .orElseThrow();
         return faculty.getStudents();
+    }
+
+    @Override
+    public String longestName() {
+        logger.info("get longest name");
+        return facultyRepository.findAll().stream().map(Faculty::getName).max(Comparator.comparingInt(String::length)).orElse(null);
+    }
+
+    @Override
+    public long sum() {
+        return LongStream.rangeClosed(1L, 1_000_000L)
+                .parallel()
+                .sum();
     }
 }

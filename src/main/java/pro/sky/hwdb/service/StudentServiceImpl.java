@@ -25,4 +25,8 @@ public interface StudentServiceImpl {
     Float avgAge();
 
     Collection<Student> lastStudents();
+
+    Collection<Student> startsWithA();
+
+    Double avgAgeStream();
 }

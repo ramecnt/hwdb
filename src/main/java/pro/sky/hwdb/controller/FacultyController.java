@@ -67,4 +67,14 @@ public class FacultyController {
     public ResponseEntity<Set<Student>> getStudents(@RequestParam long facultyId) {
         return ResponseEntity.ok(facultyService.getStudents(facultyId));
     }
+
+    @GetMapping("/longestName")
+    public ResponseEntity<String> longestName() {
+        return ResponseEntity.ok(facultyService.longestName());
+    }
+
+    @GetMapping("/sum")
+    public ResponseEntity<Long> sum() {
+        return ResponseEntity.ok(facultyService.sum());
+    }
 }
