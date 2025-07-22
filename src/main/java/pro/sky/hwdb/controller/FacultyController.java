@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.hwdb.model.Faculty;
 import pro.sky.hwdb.model.Student;
-import pro.sky.hwdb.service.FacultyServiceImpl;
+import pro.sky.hwdb.service.FacultyService.FacultyServiceImpl;
 
 import java.util.Collection;
 import java.util.Collections;

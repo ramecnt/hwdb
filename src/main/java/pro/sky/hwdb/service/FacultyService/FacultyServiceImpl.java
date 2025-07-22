@@ -1,4 +1,4 @@
-package pro.sky.hwdb.service;
+package pro.sky.hwdb.service.FacultyService;
 
 import pro.sky.hwdb.model.Faculty;
 import pro.sky.hwdb.model.Student;

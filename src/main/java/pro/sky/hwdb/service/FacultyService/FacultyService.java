@@ -1,4 +1,4 @@
-package pro.sky.hwdb.service;
+package pro.sky.hwdb.service.FacultyService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

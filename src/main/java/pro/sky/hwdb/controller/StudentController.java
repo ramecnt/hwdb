@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.hwdb.model.Faculty;
 import pro.sky.hwdb.model.Student;
-import pro.sky.hwdb.service.StudentServiceImpl;
+import pro.sky.hwdb.service.StudentService.StudentServiceImpl;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -93,5 +93,17 @@ public class StudentController {
     @GetMapping("/average_age_stream")
     public ResponseEntity<Double> averageAgeStream() {
         return ResponseEntity.ok(studentService.avgAgeStream());
+    }
+
+    @GetMapping("/print-parallel")
+    public ResponseEntity<Void> printParallel() {
+        studentService.printParallel();
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/print-synchronized")
+    public ResponseEntity<Void> printSynchronized() {
+        studentService.printSynchronized();
+        return ResponseEntity.ok().build();
     }
 }

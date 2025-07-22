@@ -1,4 +1,4 @@
-package pro.sky.hwdb.service;
+package pro.sky.hwdb.service.StudentService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +14,8 @@ public class StudentService implements StudentServiceImpl {
     Logger logger = LoggerFactory.getLogger(StudentService.class);
 
     private final StudentRepository studentRepository;
+
+    private final Object waitObject = new Object();
 
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
@@ -92,5 +94,45 @@ public class StudentService implements StudentServiceImpl {
     public Double avgAgeStream() {
         logger.info("Get student avg age using stream stream");
         return studentRepository.findAll().stream().mapToDouble(Student::getAge).average().orElseThrow();
+    }
+
+    @Override
+    public void printParallel() {
+        logger.info("print student names parallel");
+        System.out.println(findStudent(1).getName());
+        System.out.println(findStudent(2).getName());
+
+        new Thread(() -> {
+            System.out.println(findStudent(3).getName());
+            System.out.println(findStudent(4).getName());
+        }).start();
+
+        new Thread(() -> {
+            System.out.println(findStudent(5).getName());
+            System.out.println(findStudent(6).getName());
+        }).start();
+    }
+
+    @Override
+    public void printSynchronized() {
+        logger.info("print student names synchronized");
+        print(findStudent(1).getName());
+        print(findStudent(2).getName());
+
+        new Thread(() -> {
+            print(findStudent(3).getName());
+            print(findStudent(4).getName());
+        }).start();
+
+        new Thread(() -> {
+            print(findStudent(5).getName());
+            print(findStudent(6).getName());
+        }).start();
+    }
+
+    private void print(String name) {
+        synchronized (waitObject) {
+            System.out.println(name);
+        }
     }
 }

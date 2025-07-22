@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import pro.sky.hwdb.model.Faculty;
 import pro.sky.hwdb.model.Student;
 import pro.sky.hwdb.repositories.FacultyRepository;
-import pro.sky.hwdb.service.FacultyServiceImpl;
+import pro.sky.hwdb.service.FacultyService.FacultyServiceImpl;
 
 import java.util.HashSet;
 import java.util.List;

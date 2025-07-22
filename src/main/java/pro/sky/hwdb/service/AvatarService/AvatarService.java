@@ -1,4 +1,4 @@
-package pro.sky.hwdb.service;
+package pro.sky.hwdb.service.AvatarService;
 
 
 import jakarta.transaction.Transactional;
@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import pro.sky.hwdb.model.Avatar;
 import pro.sky.hwdb.model.Student;
 import pro.sky.hwdb.repositories.AvatarRepository;
+import pro.sky.hwdb.service.StudentService.StudentService;
 
 import java.io.*;
 import java.nio.file.Files;

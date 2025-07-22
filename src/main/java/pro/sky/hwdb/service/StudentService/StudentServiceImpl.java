@@ -1,4 +1,4 @@
-package pro.sky.hwdb.service;
+package pro.sky.hwdb.service.StudentService;
 
 import pro.sky.hwdb.model.Faculty;
 import pro.sky.hwdb.model.Student;
@@ -29,4 +29,8 @@ public interface StudentServiceImpl {
     Collection<Student> startsWithA();
 
     Double avgAgeStream();
+
+    void printParallel();
+
+    void printSynchronized();
 }
